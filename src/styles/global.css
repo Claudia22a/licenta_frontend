@@ -1,0 +1,74 @@
+@import './variables.css';
+
+/* Global styles */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+   font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* Override Bootstrap buttons */
+.btn-primary {
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  color: white !important;
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary) !important;
+  border-color: var(--color-secondary) !important;
+  color: black !important;
+}
+
+.btn-accent {
+  background-color: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+  color: white !important;
+}
+
+/* Bootstrap button overrides */
+.btn-primary,
+.btn-secondary,
+.btn-accent {
+  transition: all 0.2s ease;
+  box-shadow: none;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 4px 8px rgba(66, 173, 223, 0.4); /* var(--color-primary) */
+}
+
+.btn-secondary:hover {
+  box-shadow: 0 4px 8px rgba(255, 183, 3, 0.4); /* var(--color-secondary) */
+}
+
+.btn-accent:hover {
+  box-shadow: 0 4px 8px rgba(251, 133, 0, 0.4); /* var(--color-accent) */
+}
+
+/* Custom form card styling */
+.form-card {
+  background-color: white;
+  padding: 2rem;
+}
+.form-card-primary {
+  box-shadow: 0 4px 20px rgba(142, 202, 230, 0.3); /* primary color shadow */
+}
+.form-card-secondary {
+  box-shadow: 0 4px 20px rgba(255, 183, 3, 0.4); /* primary color shadow */
+}
+.form-card-accent {
+  box-shadow: 0 4px 20px rgba(251, 133, 0, 0.4); /* primary color shadow */
+}
+
+.shadow-subtle {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Form input focus styling */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.25rem rgba(142, 202, 230, 0.4); /* custom shadow */
+  outline: none;
+}

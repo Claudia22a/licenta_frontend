@@ -13,7 +13,7 @@ export default function Landing() {
       {!user && (
         <div className="mt-4">
           <Link to="/signup" className="btn btn-primary me-2">Sign Up</Link>
-          <Link to="/login" className="btn btn-outline-primary">Log In</Link>
+          <Link to="/login" className="btn btn-secondary">Log In</Link>
         </div>
       )}
     </div>
