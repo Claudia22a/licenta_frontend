@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../context/Auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
@@ -9,7 +9,7 @@ const Signup = () => {
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [error, setError] = useState('');
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

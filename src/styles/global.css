@@ -4,7 +4,25 @@
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
-   font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
+}
+
+.navbar {
+  box-shadow: 0 4px 8px rgba(255, 183, 3, 0.05); /* var(--color-secondary) */
+}
+.navbar-brand {
+  color: var(--color-text);
+  font-weight: bold;
+}
+.nav-link {
+  color: var(--color-accent);
+}
+.nav-link:hover {
+  color: var(--color-text);
+}
+
+footer {
+  box-shadow: 8px 0 10px rgba(255, 183, 3, 0.1); /* var(--color-secondary) */
 }
 
 /* Override Bootstrap buttons */
@@ -13,37 +31,74 @@ body {
   border-color: var(--color-primary) !important;
   color: white !important;
 }
-
 .btn-secondary {
   background-color: var(--color-secondary) !important;
   border-color: var(--color-secondary) !important;
   color: black !important;
 }
-
 .btn-accent {
   background-color: var(--color-accent) !important;
   border-color: var(--color-accent) !important;
   color: white !important;
 }
-
-/* Bootstrap button overrides */
 .btn-primary,
 .btn-secondary,
 .btn-accent {
   transition: all 0.2s ease;
   box-shadow: none;
+  border-radius: 0.2rem !important;
 }
-
 .btn-primary:hover {
   box-shadow: 0 4px 8px rgba(66, 173, 223, 0.4); /* var(--color-primary) */
 }
-
 .btn-secondary:hover {
   box-shadow: 0 4px 8px rgba(255, 183, 3, 0.4); /* var(--color-secondary) */
 }
-
 .btn-accent:hover {
   box-shadow: 0 4px 8px rgba(251, 133, 0, 0.4); /* var(--color-accent) */
+}
+
+/* Custom Bootstrap btn-outline overrides */
+.btn-outline-primary {
+  color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  background-color: transparent !important;
+  transition: all 0.2s ease;
+  border-radius: 0.2rem !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--color-primary) !important;
+  color: white !important;
+  box-shadow: 0 4px 8px rgba(66, 173, 223, 0.4); /* primary shadow */
+}
+
+.btn-outline-secondary {
+  color: var(--color-secondary) !important;
+  border-color: var(--color-secondary) !important;
+  background-color: transparent !important;
+  transition: all 0.2s ease;
+  border-radius: 0.2rem !important;
+}
+
+.btn-outline-secondary:hover {
+  background-color: var(--color-secondary) !important;
+  color: black !important;
+  box-shadow: 0 4px 8px rgba(255, 183, 3, 0.4); /* secondary shadow */
+}
+
+.btn-outline-accent {
+  color: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+  background-color: transparent !important;
+  transition: all 0.2s ease;
+  border-radius: 0.2rem !important;
+}
+
+.btn-outline-accent:hover {
+  background-color: var(--color-accent) !important;
+  color: white !important;
+  box-shadow: 0 4px 8px rgba(251, 133, 0, 0.4); /* accent shadow */
 }
 
 /* Custom form card styling */
@@ -51,8 +106,11 @@ body {
   background-color: white;
   padding: 2rem;
 }
+.form-card label {
+  font-size: small;
+}
 .form-card-primary {
-  box-shadow: 0 4px 20px rgba(142, 202, 230, 0.3); /* primary color shadow */
+  box-shadow: 0 4px 20px rgba(142, 202, 230, 0.2); /* primary color shadow */
 }
 .form-card-secondary {
   box-shadow: 0 4px 20px rgba(255, 183, 3, 0.4); /* primary color shadow */
@@ -72,3 +130,30 @@ body {
   box-shadow: 0 0 0 0.25rem rgba(142, 202, 230, 0.4); /* custom shadow */
   outline: none;
 }
+
+.form-control,
+.form-select {
+  border-radius: 2rem;
+}
+
+/* Example in your CSS file */
+.datepicker .react-datepicker__day-name,
+.datepicker .react-datepicker__current-month {
+  color: white;
+}
+.datepicker .react-datepicker__header,
+.datepicker .react-datepicker__day--selected,
+.datepicker .react-datepicker__day--in-selecting-range,
+.datepicker .react-datepicker__day--in-range {
+  background-color: var(--color-primary);
+  color: white;
+}
+.datepicker .react-datepicker {
+  border: 0;
+  box-shadow: 0 4px 20px rgba(142, 202, 230, 0.2);
+}
+.datepicker .react-datepicker-wrapper {
+  width: 100%;
+}
+
+/* Add more overrides for other parts and colors */

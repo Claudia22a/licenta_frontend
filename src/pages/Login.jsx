@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
-import { AuthContext } from '../context/AuthContext';
-import { useNavigate } from "react-router-dom";
+import { AuthContext } from '../context/Auth/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const { login } = useContext(AuthContext);
@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await login(email, password);
-       navigate("/dashboard");
+      navigate('/dashboard');
     } catch (err) {
       if (err.message) setError(err.message);
       else setError('Login failed. Please try again.');
@@ -23,7 +23,7 @@ const Login = () => {
 
   return (
     <div className="container mt-5" style={{ maxWidth: '500px' }}>
-      <div className="form-card">
+      <div className="form-card form-card-primary">
         <h2 className="text-center mb-4" style={{ color: '#023047' }}>
           Log In
         </h2>

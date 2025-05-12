@@ -8,7 +8,8 @@ import Dashboard from './pages/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
 import AddBaby from './pages/AddBaby';
 import { useContext } from 'react';
-import { AuthContext } from './context/AuthContext';
+import { AuthContext } from './context/Auth/AuthContext';
+import EditBaby from './pages/EditBaby';
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -46,6 +47,14 @@ function App() {
             element={
               <PrivateRoute>
                 <AddBaby />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/edit-baby/:id"
+            element={
+              <PrivateRoute>
+                <EditBaby />
               </PrivateRoute>
             }
           />

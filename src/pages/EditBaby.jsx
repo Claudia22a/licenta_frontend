@@ -1,27 +1,29 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { BabiesContext } from '../context/Babies/BabiesContext';
 import DateInput from '../components/DateInput';
 import api from '../api/axios';
-import { BabiesContext } from '../context/Babies/BabiesContext';
-import { useNavigate } from 'react-router-dom';
 import { bloodTypes } from '../helpers/constants';
 
-export default function AddBaby() {
-  const [formData, setFormData] = useState({
-    name: '',
-    birth_date: '',
-    gender: '',
-    weight_at_birth: '',
-    height_at_birth: '',
-    blood_type: '',
-    allergies: '',
-    notes: '',
-  });
-
-  const [success, setSuccess] = useState('');
-  const [error, setError] = useState('');
-
-  const { addBaby } = useContext(BabiesContext);
+export default function EditBaby() {
+  const { id } = useParams();
+  const { babies, setBabies } = useContext(BabiesContext);
   const navigate = useNavigate();
+
+  const baby = babies.find((b) => b.id === parseInt(id));
+  const [formData, setFormData] = useState(null);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
+  useEffect(() => {
+    if (baby) {
+      setFormData({ ...baby });
+    }
+  }, [baby]);
+
+  if (!formData) {
+    return <div className="container mt-5">Baby not found or loading...</div>;
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,11 +32,10 @@ export default function AddBaby() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const token = localStorage.getItem('token');
-      const res = await api.post(
-        '/api/v1/babies',
+      const res = await api.put(
+        `/api/v1/babies/${id}`,
         { baby: formData },
         {
           headers: {
@@ -43,33 +44,25 @@ export default function AddBaby() {
         }
       );
 
-      setSuccess('Baby added successfully!');
-      setError('');
-      setFormData({
-        name: '',
-        birth_date: '',
-        gender: '',
-        weight_at_birth: '',
-        height_at_birth: '',
-        blood_type: '',
-        allergies: '',
-        notes: '',
-      });
-      addBaby(res.data);
-      navigate('/dashboard');
+      // Update local context with new data
+      const updated = res.data;
+      const updatedBabies = babies.map((b) =>
+        b.id === updated.id ? updated : b
+      );
+      setBabies(updatedBabies);
+
+      setSuccess('Baby updated successfully!');
+      setTimeout(() => navigate('/dashboard'), 1500);
     } catch (err) {
-      const errorMsg =
-        err.response?.data?.errors?.join(', ') || 'Something went wrong.';
-      setError(errorMsg);
-      setSuccess('');
+      const msg = err.response?.data?.errors?.join(', ') || 'Update failed.';
+      setError(msg);
     }
   };
 
   return (
     <div className="container mt-5" style={{ maxWidth: '600px' }}>
       <div className="form-card">
-        <h2 style={{ color: '#023047' }}>Add Your Baby</h2>
-
+        <h2>Edit Baby</h2>
         {error && <div className="alert alert-danger">{error}</div>}
         {success && <div className="alert alert-success">{success}</div>}
 
@@ -205,7 +198,7 @@ export default function AddBaby() {
                 className="btn btn-primary w-100"
                 style={{ backgroundColor: '#fb8500', border: 'none' }}
               >
-                Save Baby
+                Save Changes
               </button>
             </div>
           </div>

@@ -1,11 +1,13 @@
 // src/context/AuthProvider.jsx
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from './AuthContext';
-import api from '../api/axios';
+import api from '../../api/axios';
+import { BabiesContext } from '../Babies/BabiesContext';
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { loadBabies } = useContext(BabiesContext);
 
   const fetchCurrentUser = async () => {
     const token = localStorage.getItem('token');
@@ -23,8 +25,12 @@ export const AuthProvider = ({ children }) => {
         },
       });
       setUser(res.data.user);
+      loadBabies();
     } catch (error) {
-      console.error('Failed to fetch current user:', error.response?.data || error.message);
+      console.error(
+        'Failed to fetch current user:',
+        error.response?.data || error.message
+      );
       localStorage.removeItem('token');
       setUser(null);
     } finally {
@@ -79,6 +85,7 @@ export const AuthProvider = ({ children }) => {
       );
       localStorage.setItem('token', res.data.token);
       setUser(res.data.user);
+      loadBabies();
       return res.data;
     } catch (error) {
       const errors = error.response?.data?.errors || ['Login failed'];
