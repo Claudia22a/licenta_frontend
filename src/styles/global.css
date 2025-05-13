@@ -166,4 +166,11 @@ footer {
   width: 100%;
 }
 
-/* Add more overrides for other parts and colors */
+.alert {
+  border: 0;
+  border-radius: 0;
+}
+.alert-created {
+  background-color: rgba(142, 202, 230, 0.5);
+  color: var(--color-text);
+}

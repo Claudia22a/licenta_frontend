@@ -22,6 +22,7 @@ export default function FeedForm({ updateField, updateDateField, data }) {
             value={data.unit}
             onChange={(e) => updateField(e)}
             className="form-select"
+            required={!!data.amount}
           >
             <option value="">Select...</option>
             <option value="ml">ml</option>

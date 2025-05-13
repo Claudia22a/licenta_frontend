@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import { BabiesContext } from '../context/Babies/BabiesContext';
 
 export default function Dashboard() {
-  const { selectedBaby } = useContext(BabiesContext);
+  const { selectedBaby, babyAlert } = useContext(BabiesContext);
 
   return (
     <div className="container my-5">
+      {!!babyAlert && <div className="alert alert-created">{babyAlert}</div>}
+
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h2 className="mb-0">👶 Your Baby Dashboard</h2>
         <Link to="/add-baby" className="btn btn-secondary">
@@ -33,10 +35,7 @@ export default function Dashboard() {
             >
               Edit
             </Link>
-            <Link
-              to={`/add-log-entry`}
-              className="btn btn-sm btn-primary"
-            >
+            <Link to={`/add-log-entry`} className="btn btn-sm btn-primary">
               Add Log Entry
             </Link>
           </div>

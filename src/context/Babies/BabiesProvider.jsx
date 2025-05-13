@@ -5,7 +5,15 @@ import api from '../../api/axios';
 export const BabiesProvider = ({ children }) => {
   const [babies, setBabies] = useState([]);
   const [selectedBabyId, setSelectedBabyId] = useState(null);
+  const [babyAlert, setBabyAlert] = useState(null)
   const existingSelectedBabyId = Number(localStorage.getItem('selectedBabyId'));
+
+  const setTemporaryBabyAlert = (alertMessage, duration = 5000) => {
+    setBabyAlert(alertMessage);
+    setTimeout(() => {
+      setBabyAlert(null);
+    }, duration);
+  };
 
   const addBaby = (baby) => {
     setBabies((prev) => {
@@ -50,6 +58,8 @@ export const BabiesProvider = ({ children }) => {
         selectBaby,
         selectedBabyId,
         loadBabies,
+        babyAlert,
+        setBabyAlert: setTemporaryBabyAlert
       }}
     >
       {children}

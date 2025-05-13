@@ -2,15 +2,17 @@ import { BabiesContext } from '../context/Babies/BabiesContext';
 import { useContext, useState } from 'react';
 import EntryForm from '../components/LogEntryForms/LogEntryForm';
 import EntryTypeSelector from '../components/LogEntryForms/EntryTypeSelector';
+import api from '../api/axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function AddLogEntry() {
   const baseFormData = {
     title: '',
-    logged_at: Date.now(),
+    logged_at: new Date(),
     notes: '',
     amount: 0,
-    start_time: Date.now(),
-    end_time: Date.now(),
+    start_time: new Date(),
+    end_time: new Date(),
     unit: '',
     location: '',
     mood: '',
@@ -29,6 +31,9 @@ export default function AddLogEntry() {
   };
   const [entryType, setEntryType] = useState('');
   const [formData, setFormData] = useState(baseFormData);
+  const [error, setError] = useState('');
+  const { selectedBabyId, setBabyAlert } = useContext(BabiesContext);
+  const navigate = useNavigate()
 
   const updateField = (e) => {
     const { name, value } = e.target;
@@ -37,25 +42,37 @@ export default function AddLogEntry() {
   const updateDateField = (name, value) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  //   const { selectedBabyId } = useContext(BabiesContext);
-  const onSubmit = () => {};
-  //   const onSubmit = async (data) => {
-  //     const response = await fetch(`/api/v1/babies/${selectedBabyId}/log_entries`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify({ log_entry: data })
-  //     });
+  const onSubmit = async (e) => {
+    e.preventDefault();
 
-  //     if (response.ok) {
-  //       reset();
-  //       router.push(`/babies/${selectedBabyId}/log`);
-  //     } else {
-  //       const { errors } = await response.json();
-  //       alert(errors.join('\n'));
-  //     }
-  //   };
+    try {
+      const token = localStorage.getItem('token');
+      const res = await api.post(
+        `/api/v1/babies/${selectedBabyId}/log_entries`,
+        { log_entry: { ...formData, entry_type: entryType } },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (!res) {
+        setError('Something went wrong. Please try again.');
+        return;
+      } else {
+        setError('');
+        setFormData(baseFormData);
+        setEntryType('');
+        setBabyAlert('Log was saved successfully')
+        navigate('/dashboard')
+      }
+    } catch (err) {
+      const errorMsg =
+        err.response?.data?.errors?.join(', ') ||
+        'Something went wrong. Please try again.';
+      setError(errorMsg);
+    }
+  };
 
   return (
     <div className="container my-5" style={{ maxWidth: '600px' }}>
@@ -68,6 +85,8 @@ export default function AddLogEntry() {
             setFormData={setFormData}
             baseFormData={baseFormData}
           />
+
+          {error && <div className="alert alert-danger">{error}</div>}
           <EntryForm
             data={formData}
             updateField={updateField}
