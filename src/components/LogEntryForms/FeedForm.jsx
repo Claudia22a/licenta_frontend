@@ -32,8 +32,8 @@ export default function FeedForm({ updateField, updateDateField, data }) {
         <div className="col-sm-5">
           <label>Method</label>
           <select
-            name="method"
-            value={data.method}
+            name="feeding_type"
+            value={data.feeding_type}
             onChange={(e) => updateField(e)}
             className="form-select"
             required
@@ -47,6 +47,22 @@ export default function FeedForm({ updateField, updateDateField, data }) {
           </select>
         </div>
       </div>
+
+      {data.feeding_type === 'other_feeding' && (
+        <div className="row">
+          <div className="col-sm-12">
+            <label>Other</label>
+            <input
+              className="form-control"
+              name="other_feeding_type"
+              value={data.other_feeding_type}
+              onChange={(e) => updateField(e)}
+              required={data.feeding_type === 'other_feeding'}
+            />
+          </div>
+        </div>
+      )}
+
       <div className="row">
         <div className="col-sm-6">
           <label>Logged at</label>

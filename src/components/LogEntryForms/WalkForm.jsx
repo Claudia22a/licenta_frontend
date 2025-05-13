@@ -33,6 +33,21 @@ export default function WalkForm({ updateField, updateDateField, data }) {
         </div>
       </div>
 
+      {data.walk_type === 'other_walk' && (
+        <div className="row">
+          <div className="col-sm-12">
+            <label>Other</label>
+            <input
+              className="form-control"
+              name="other_walk_type"
+              value={data.other_walk_type}
+              onChange={(e) => updateField(e)}
+              required={data.walk_type === 'other_walk'}
+            />
+          </div>
+        </div>
+      )}
+
       <div className="row">
         <div className="col-sm-6">
           <label>Start time</label>

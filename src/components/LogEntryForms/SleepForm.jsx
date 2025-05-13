@@ -41,6 +41,18 @@ export default function SleepForm({ updateField, updateDateField, data }) {
             ))}
           </select>
         </div>
+        {data.sleep_type === 'other_sleep' && (
+          <div className="col-sm-6">
+            <label>Other</label>
+            <input
+              className="form-control"
+              name="other_sleep_type"
+              value={data.other_sleep_type}
+              onChange={(e) => updateField(e)}
+              required={data.sleep_type === 'other_sleep'}
+            />
+          </div>
+        )}
       </div>
 
       <div className="row">

@@ -32,6 +32,21 @@ export default function MedicalForm({ updateField, updateDateField, data }) {
         </div>
       </div>
 
+      {data.symptom_type === 'other_symptom' && (
+        <div className="row">
+          <div className="col-sm-12">
+            <label>Other</label>
+            <input
+              className="form-control"
+              name="other_symptom_type"
+              value={data.other_symptom_type}
+              onChange={(e) => updateField(e)}
+              required={data.symptom_type === 'other_symptom'}
+            />
+          </div>
+        </div>
+      )}
+
       <div className="row">
         <div className="col-sm-12">
           <label>Notes</label>

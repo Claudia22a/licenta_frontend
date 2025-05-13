@@ -47,6 +47,21 @@ export default function CustomForm({ updateField, updateDateField, data }) {
         </div>
       </div>
 
+      {data.tag_type === 'other_tag' && (
+        <div className="row">
+          <div className="col-sm-12">
+            <label>Other</label>
+            <input
+              className="form-control"
+              name="other_tag_type"
+              value={data.other_tag_type}
+              onChange={(e) => updateField(e)}
+              required={data.tag_type === 'other_tag'}
+            />
+          </div>
+        </div>
+      )}
+
       <div className="row">
         <div className="col-sm-12">
           <label>Notes</label>

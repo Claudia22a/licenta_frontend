@@ -32,6 +32,21 @@ export default function DiaperForm({ updateField, updateDateField, data }) {
         </div>
       </div>
 
+      {data.diaper_type === 'other_diaper' && (
+        <div className="row">
+          <div className="col-sm-12">
+            <label>Other</label>
+            <input
+              className="form-control"
+              name="other_diaper_type"
+              value={data.other_diaper_type}
+              onChange={(e) => updateField(e)}
+              required={data.diaper_type === 'other_diaper'}
+            />
+          </div>
+        </div>
+      )}
+
       <div className="row">
         <div className="col-sm-12">
           <label>Notes</label>
