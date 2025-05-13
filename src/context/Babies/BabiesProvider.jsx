@@ -5,6 +5,7 @@ import api from '../../api/axios';
 export const BabiesProvider = ({ children }) => {
   const [babies, setBabies] = useState([]);
   const [selectedBabyId, setSelectedBabyId] = useState(null);
+  const existingSelectedBabyId = Number(localStorage.getItem('selectedBabyId'));
 
   const addBaby = (baby) => {
     setBabies((prev) => {
@@ -28,7 +29,8 @@ export const BabiesProvider = ({ children }) => {
       });
       setBabies(res.data);
       if (res.data.length > 0 && !selectedBabyId) {
-        setSelectedBabyId(res.data[0].id);
+        if (existingSelectedBabyId) setSelectedBabyId(existingSelectedBabyId);
+        else setSelectedBabyId(res.data[0].id);
       }
     } catch (err) {
       console.error(

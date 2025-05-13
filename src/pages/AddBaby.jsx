@@ -66,7 +66,7 @@ export default function AddBaby() {
   };
 
   return (
-    <div className="container mt-5" style={{ maxWidth: '600px' }}>
+    <div className="container my-5" style={{ maxWidth: '600px' }}>
       <div className="form-card">
         <h2 style={{ color: '#023047' }}>Add Your Baby</h2>
 

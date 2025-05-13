@@ -7,6 +7,11 @@ export default function Navbar() {
   const { user, logout } = useContext(AuthContext);
   const { babies, selectedBabyId, selectBaby } = useContext(BabiesContext);
 
+  const onSelectBaby = (id) => {
+    selectBaby(id);
+    localStorage.setItem('selectedBabyId', id)
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light px-4">
       <Link className="navbar-brand" to="/">
@@ -30,29 +35,32 @@ export default function Navbar() {
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav ms-auto">
           {user && babies.length > 0 && (
-          <div className="dropdown me-3">
-            <button
-              className="btn btn-outline-accent dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              {babies.find(b => b.id === selectedBabyId)?.name || "Select Baby"}
-            </button>
-            <ul className="dropdown-menu">
-              {babies.map((baby) => (
-                <li key={baby.id}>
-                  <button
-                    className={`dropdown-item ${baby.id === selectedBabyId ? 'active' : ''}`}
-                    onClick={() => selectBaby(baby.id)}
-                  >
-                    {baby.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+            <div className="dropdown me-3">
+              <button
+                className="btn btn-outline-accent dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {babies.find((b) => b.id === selectedBabyId)?.name ||
+                  'Select Baby'}
+              </button>
+              <ul className="dropdown-menu">
+                {babies.map((baby) => (
+                  <li key={baby.id}>
+                    <button
+                      className={`dropdown-item ${
+                        baby.id === selectedBabyId ? 'active' : ''
+                      }`}
+                      onClick={() => onSelectBaby(baby.id)}
+                    >
+                      {baby.name}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {!user && (
             <>
               <li className="nav-item">

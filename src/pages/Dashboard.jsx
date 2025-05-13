@@ -6,7 +6,7 @@ export default function Dashboard() {
   const { selectedBaby } = useContext(BabiesContext);
 
   return (
-    <div className="container mt-5">
+    <div className="container my-5">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h2 className="mb-0">👶 Your Baby Dashboard</h2>
         <Link to="/add-baby" className="btn btn-secondary">

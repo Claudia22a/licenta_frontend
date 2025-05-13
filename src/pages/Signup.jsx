@@ -22,7 +22,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="container mt-5" style={{ maxWidth: '500px' }}>
+    <div className="container my-5" style={{ maxWidth: '500px' }}>
       <div className="form-card form-card-primary">
         <h2 className="text-center mb-4" style={{ color: '#023047' }}>
           Sign Up

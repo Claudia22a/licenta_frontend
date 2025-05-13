@@ -103,10 +103,12 @@ export const AuthProvider = ({ children }) => {
         },
       });
       localStorage.removeItem('token');
+      localStorage.removeItem('selectedBabyId');
       setUser(null);
     } catch (error) {
       console.error('Logout error:', error.response?.data || error.message);
       localStorage.removeItem('token');
+      localStorage.removeItem('selectedBabyId');
       setUser(null);
     }
   };

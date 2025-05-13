@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { BabiesContext } from '../context/Babies/BabiesContext';
 import DateInput from '../components/DateInput';
 import api from '../api/axios';
@@ -8,7 +8,6 @@ import { bloodTypes } from '../helpers/constants';
 export default function EditBaby() {
   const { id } = useParams();
   const { babies, setBabies } = useContext(BabiesContext);
-  const navigate = useNavigate();
 
   const baby = babies.find((b) => b.id === parseInt(id));
   const [formData, setFormData] = useState(null);
@@ -22,7 +21,7 @@ export default function EditBaby() {
   }, [baby]);
 
   if (!formData) {
-    return <div className="container mt-5">Baby not found or loading...</div>;
+    return <div className="container my-5">Baby not found or loading...</div>;
   }
 
   const handleChange = (e) => {
@@ -52,7 +51,6 @@ export default function EditBaby() {
       setBabies(updatedBabies);
 
       setSuccess('Baby updated successfully!');
-      setTimeout(() => navigate('/dashboard'), 1500);
     } catch (err) {
       const msg = err.response?.data?.errors?.join(', ') || 'Update failed.';
       setError(msg);
@@ -60,7 +58,7 @@ export default function EditBaby() {
   };
 
   return (
-    <div className="container mt-5" style={{ maxWidth: '600px' }}>
+    <div className="container my-5" style={{ maxWidth: '600px' }}>
       <div className="form-card">
         <h2>Edit Baby</h2>
         {error && <div className="alert alert-danger">{error}</div>}

@@ -6,7 +6,7 @@ export default function Landing() {
   const { user } = useContext(AuthContext);
 
   return (
-    <div className="container mt-5 text-center">
+    <div className="container my-5 text-center">
       <h1 className="display-4">Welcome to BabyAssistant 👶</h1>
       <p className="lead">
         Track your baby's daily routines and health in one place.

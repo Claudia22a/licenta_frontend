@@ -7,6 +7,16 @@ body {
   font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+label,
+p {
+  color: var(--color-text);
+}
+
 .navbar {
   box-shadow: 0 4px 8px rgba(255, 183, 3, 0.05); /* var(--color-secondary) */
 }
