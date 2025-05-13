@@ -163,7 +163,7 @@ export default function AddBaby() {
                   onChange={handleChange}
                   required
                 >
-                  <option value="girl">Select...</option>
+                  <option value="">Select...</option>
                   {bloodTypes.map((type) => (
                     <option key={type} value={type}>
                       {type}

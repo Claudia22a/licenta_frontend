@@ -33,6 +33,12 @@ export default function Dashboard() {
             >
               Edit
             </Link>
+            <Link
+              to={`/add-log-entry`}
+              className="btn btn-sm btn-primary"
+            >
+              Add Log Entry
+            </Link>
           </div>
           <p className="mb-1">
             <strong>Birth Date:</strong> {selectedBaby.birth_date}

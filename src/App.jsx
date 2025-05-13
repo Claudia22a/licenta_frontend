@@ -10,6 +10,7 @@ import AddBaby from './pages/AddBaby';
 import { useContext } from 'react';
 import { AuthContext } from './context/Auth/AuthContext';
 import EditBaby from './pages/EditBaby';
+import AddLogEntry from './pages/AddLogEntry';
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -55,6 +56,14 @@ function App() {
             element={
               <PrivateRoute>
                 <EditBaby />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/add-log-entry"
+            element={
+              <PrivateRoute>
+                <AddLogEntry />
               </PrivateRoute>
             }
           />

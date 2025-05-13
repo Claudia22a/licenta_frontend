@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../context/Auth/AuthContext';
 import { BabiesContext } from '../context/Babies/BabiesContext';
@@ -6,10 +6,12 @@ import { BabiesContext } from '../context/Babies/BabiesContext';
 export default function Navbar() {
   const { user, logout } = useContext(AuthContext);
   const { babies, selectedBabyId, selectBaby } = useContext(BabiesContext);
+  const navigate = useNavigate();
 
   const onSelectBaby = (id) => {
     selectBaby(id);
-    localStorage.setItem('selectedBabyId', id)
+    localStorage.setItem('selectedBabyId', id);
+    navigate('/dashboard');
   };
 
   return (
