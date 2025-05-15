@@ -4,7 +4,7 @@ import Footer from './components/Footer';
 import Landing from './pages/Landing';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/Dashboard/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
 import AddBaby from './pages/AddBaby';
 import { useContext } from 'react';

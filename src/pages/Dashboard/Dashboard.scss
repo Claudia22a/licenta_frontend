@@ -1,0 +1,82 @@
+.form-card {
+  border: 0;
+  border-left: 6px solid #49b2e2; // Baby blue
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-options {
+  .emoji-button {
+    border: none;
+    border-radius: 8px;
+    width: 50px; // Fixed width for squarish shape
+    height: 50px; // Fixed height for squarish shape
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5faff; // Soft background
+    color: #023047; // Deep blue-gray
+    font-size: 24px; // Large emoji
+    transition: background-color 0.2s;
+    cursor: pointer;
+
+    &.active {
+      background-color: #49b2e2; // Baby blue
+      color: #f5faff; // Soft white
+    }
+
+    &:hover:not(.active) {
+      background-color: #ffb703; // Sunshine yellow
+      color: #023047;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.alert-success {
+  background-color: transparentize(#49b2e2, 0.8);
+  color: #023047;
+  border: none;
+}
+
+.btn-primary {
+  background-color: #49b2e2;
+  border-color: #49b2e2;
+
+  &:hover {
+    background-color: #fb8500;
+    border-color: #fb8500;
+  }
+}
+
+.btn-outline-primary {
+  color: #49b2e2;
+  border-color: #49b2e2;
+
+  &:hover {
+    background-color: #ffb703;
+    color: #023047;
+    border-color: #ffb703;
+  }
+}
+
+.btn-secondary {
+  background-color: #ffb703;
+  border-color: #ffb703;
+  color: #023047;
+
+  &:hover {
+    background-color: #fb8500;
+    border-color: #fb8500;
+    color: #f5faff;
+  }
+}
+
+/* Ensure horizontal layout on small screens */
+@media (max-width: 767.98px) {
+  .dashboard-options {
+    justify-content: start !important; // Align left for consistency
+  }
+}

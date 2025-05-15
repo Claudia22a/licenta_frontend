@@ -1,4 +1,5 @@
 import { walkTypes } from '../../helpers/constants';
+import { shouldUpdateEndTime } from '../../helpers/datetime';
 import DateInput from '../DateInput';
 
 export default function WalkForm({ updateField, updateDateField, data }) {
@@ -54,7 +55,10 @@ export default function WalkForm({ updateField, updateDateField, data }) {
           <DateInput
             showTime
             value={data.start_time}
-            onChange={(date) => updateDateField('start_time', date)}
+            onChange={(date) => {
+              updateDateField('start_time', date);
+              if (shouldUpdateEndTime) updateDateField('end_time', date);
+            }}
           />
         </div>
         <div className="col-sm-6">

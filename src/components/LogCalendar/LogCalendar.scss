@@ -1,0 +1,136 @@
+// LogCalendar.scss
+
+// Override react-big-calendar SCSS variables
+$calendar-background: #f5faff; // soft background
+$today-background: transparentize(#49b2e2, 0.9); // warm orange, 10% opacity
+$header-background: transparentize(#49b2e2, 0.8); // baby blue, 20% opacity
+$header-text-color: #023047; // deep blue-gray
+$slot-background: #f5faff; // soft background
+$event-background: transparentize(#49b2e2, 0.2); // baby blue, 80% opacity
+$event-text-color: 'white'; // deep blue-gray
+
+// Import react-big-calendar styles
+@import 'react-big-calendar/lib/sass/styles';
+// @import 'react-big-calendar/lib/addons/dragAndDrop/styles'; // Uncomment if using DnD
+
+// Custom styles for calendar
+.rbc-calendar {
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #f5faff;
+  color: #023047;
+}
+
+// Header (day names)
+.rbc-header {
+  font-weight: bold;
+  padding: 10px;
+  background-color: transparentize(#49b2e2, 0.8);
+  color: #023047;
+}
+
+// Day background
+.rbc-day-bg {
+  background-color: #f5faff;
+}
+
+// Today’s date
+.rbc-today {
+  background-color: $today-background;
+  box-shadow: 0 0 6px rgba(66, 173, 223, 0.3);
+}
+
+// Time slots
+.rbc-time-slot {
+  background-color: $slot-background;
+  color: #023047;
+}
+
+// Event styles (same for all events)
+.rbc-event {
+  border-radius: 5px;
+  padding: 2px 5px;
+  font-size: 12px;
+  background-color: $event-background; // baby blue, 80% opacity
+  color: $event-text-color;
+  transition: opacity 0.2s ease;
+}
+
+.rbc-event:hover {
+  opacity: 0.9;
+}
+
+.rbc-selected {
+  opacity: 1 !important;
+  background-color: #49b2e2 !important;
+}
+
+// Toolbar buttons (week, day, month, agenda, next, prev)
+.rbc-toolbar {
+  margin-bottom: 10px;
+}
+
+.rbc-toolbar-label {
+  color: #023047;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.rbc-btn-group {
+  button {
+    background-color: #ffb703; // sunshine yellow
+    color: #023047;
+    border-radius: 4px;
+    padding: 5px 10px;
+    margin: 0 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: transparentize(#ffb703, 0.2); // sunshine yellow, 80% opacity
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &.rbc-active {
+      background-color: #fb8500; // warm orange
+      color: #f5faff; // soft background
+    }
+  }
+}
+
+// Navigation buttons (next, prev)
+.rbc-btn-group:last-child {
+  button {
+    background-color: transparentize(#49b2e2, 0.3); // baby blue, 70% opacity
+    color: #023047;
+
+    &:hover {
+      background-color: #49b2e2;
+      color: #f5faff;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .rbc-calendar {
+    font-size: 12px;
+  }
+  .rbc-event {
+    font-size: 10px;
+  }
+  .rbc-toolbar-label {
+    font-size: 14px;
+  }
+  .rbc-btn-group button {
+    padding: 3px 6px;
+    font-size: 12px;
+  }
+}

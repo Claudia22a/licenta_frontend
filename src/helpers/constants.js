@@ -76,3 +76,12 @@ export const symptomTypes = [
   { id: 9, name: "reflux", description: "Reflux" },
   { id: 99, name: "other_symptom", description: "Other" }
 ];
+
+export const entryTypes = [
+  { value: 'feed', emoji: '🍼', label: 'Feed' },
+  { value: 'sleep', emoji: '😴', label: 'Sleep' },
+  { value: 'diaper', emoji: '💩', label: 'Diaper' },
+  { value: 'walk', emoji: '🚶', label: 'Walk' },
+  { value: 'medical', emoji: '🩺', label: 'Medical' },
+  { value: 'custom', emoji: '✨', label: 'Custom' },
+];

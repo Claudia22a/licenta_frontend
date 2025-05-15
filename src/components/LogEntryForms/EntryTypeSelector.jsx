@@ -1,11 +1,4 @@
-const entryTypes = [
-  { value: 'feed', emoji: '🍼', label: 'Feed' },
-  { value: 'sleep', emoji: '😴', label: 'Sleep' },
-  { value: 'diaper', emoji: '💩', label: 'Diaper' },
-  { value: 'walk', emoji: '🚶', label: 'Walk' },
-  { value: 'medical', emoji: '🩺', label: 'Medical' },
-  { value: 'custom', emoji: '✨', label: 'Custom' },
-];
+import { entryTypes } from '../../helpers/constants';
 
 export default function EntryTypeSelector({
   entryType,
