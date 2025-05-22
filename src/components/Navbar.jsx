@@ -36,17 +36,24 @@ export default function Navbar() {
       {/* Add ID to the collapse div and ensure proper classes */}
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav ms-auto">
+          {user && (
+            <li className="nav-item">
+              <Link to="/add-baby" className="btn btn-secondary">
+                + Add Baby
+              </Link>
+            </li>
+          )}
           {user && babies.length > 0 && (
-            <div className="dropdown me-3">
-              <button
-                className="btn btn-outline-accent dropdown-toggle"
+            <div className="dropdown">
+              <a
+                className="nav-link dropdown-toggle"
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
                 {babies.find((b) => b.id === selectedBabyId)?.name ||
                   'Select Baby'}
-              </button>
+              </a>
               <ul className="dropdown-menu">
                 {babies.map((baby) => (
                   <li key={baby.id}>

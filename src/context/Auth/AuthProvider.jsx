@@ -7,7 +7,8 @@ import { BabiesContext } from '../Babies/BabiesContext';
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { loadBabies } = useContext(BabiesContext);
+  const { loadBabies, setLoadingBabies, resetBabiesContext } =
+    useContext(BabiesContext);
 
   const fetchCurrentUser = async () => {
     const token = localStorage.getItem('token');
@@ -25,6 +26,7 @@ export const AuthProvider = ({ children }) => {
         },
       });
       setUser(res.data.user);
+      setLoadingBabies(true);
       loadBabies();
     } catch (error) {
       console.error(
@@ -85,6 +87,7 @@ export const AuthProvider = ({ children }) => {
       );
       localStorage.setItem('token', res.data.token);
       setUser(res.data.user);
+      setLoadingBabies(true);
       loadBabies();
       return res.data;
     } catch (error) {
@@ -103,13 +106,13 @@ export const AuthProvider = ({ children }) => {
         },
       });
       localStorage.removeItem('token');
-      localStorage.removeItem('selectedBabyId');
       setUser(null);
+      resetBabiesContext();
     } catch (error) {
       console.error('Logout error:', error.response?.data || error.message);
       localStorage.removeItem('token');
-      localStorage.removeItem('selectedBabyId');
       setUser(null);
+      resetBabiesContext();
     }
   };
 

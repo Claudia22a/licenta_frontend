@@ -1,0 +1,103 @@
+.baby-details-card {
+  color: #023047; // Deep blue-gray
+  overflow: hidden;
+
+  .baby-name {
+    font-weight: bold;
+    font-size: 1.75rem;
+    margin: 0; // Reset margin for flex alignment
+    display: flex;
+    align-items: center;
+
+    .emoji {
+      font-size: 2rem;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .detail-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    &.full-width {
+      grid-column: 1 / -1;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-left: 3px solid #fb8500; // Warm orange
+    }
+
+    .emoji {
+      font-size: 1.5rem;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: transparentize(#49b2e2, 0.8); // Light baby blue
+      border-radius: 50%;
+    }
+
+    strong {
+      color: #023047; // Deep blue-gray
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    p {
+      margin: 0;
+      color: #023047;
+      font-size: 0.95rem;
+    }
+  }
+
+  .text-muted {
+    font-style: italic;
+    color: transparentize(#023047, 0.4); // Faded deep blue-gray
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+
+  .btn-outline-primary,
+  .btn-outline-secondary {
+    border: 0;
+    font-size: 2rem; // Match emoji size
+    padding: 0.25rem 0.5rem; // Smaller padding for emoji-only buttons
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px; // Ensure squarish shape
+  }
+}
+
+@media (max-width: 576px) {
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-card {
+    &.full-width {
+      grid-column: auto;
+    }
+  }
+}
+
+.clickable {
+  cursor: pointer;
+}

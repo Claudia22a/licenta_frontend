@@ -1,0 +1,117 @@
+.resources-card {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #023047; // Deep blue-gray
+  padding: 1.5rem;
+  background-color: white;
+
+  .resources-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 3px solid #ffb703; // Sunshine yellow
+    padding-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+
+    .emoji {
+      font-size: 1.75rem;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .resource-item {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    height: 200px; // Fixed height for consistency
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-left: 3px solid #fb8500; // Warm orange
+    }
+
+    .resource-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; // Ensure image fills card
+      display: block;
+    }
+
+    .resource-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.95); // White with slight opacity
+      opacity: 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translateY(10px); // Slight slide-up effect
+
+      &:hover {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .emoji {
+        font-size: 1.5rem;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparentize(#49b2e2, 0.8); // Light baby blue
+        border-radius: 50%;
+      }
+
+      h5 {
+        color: #023047; // Deep blue-gray
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        color: #023047;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+
+      .btn-outline-primary {
+        color: #49b2e2;
+        border-color: #49b2e2;
+        font-size: 0.9rem;
+
+        &:hover {
+          background-color: #ffb703; // Sunshine yellow
+          color: #023047;
+          border-color: #ffb703;
+        }
+
+        &:active {
+          background-color: #fb8500 !important; // Warm orange
+          border-color: #fb8500 !important;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .resources-grid {
+    grid-template-columns: 1fr;
+  }
+}

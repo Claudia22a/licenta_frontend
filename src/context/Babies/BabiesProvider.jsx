@@ -3,10 +3,19 @@ import { BabiesContext } from './BabiesContext';
 import api from '../../api/axios';
 
 export const BabiesProvider = ({ children }) => {
+  const [loadingBabies, setLoadingBabies] = useState(false)
   const [babies, setBabies] = useState([]);
   const [selectedBabyId, setSelectedBabyId] = useState(null);
   const [babyAlert, setBabyAlert] = useState(null)
   const existingSelectedBabyId = Number(localStorage.getItem('selectedBabyId'));
+
+   const resetBabiesContext = () => {
+    setBabies([]);
+    setSelectedBabyId(null);
+    setLoadingBabies(false);
+    setBabyAlert(null);
+    localStorage.removeItem('selectedBabyId');
+  };
 
   const setTemporaryBabyAlert = (alertMessage, duration = 5000) => {
     setBabyAlert(alertMessage);
@@ -36,11 +45,13 @@ export const BabiesProvider = ({ children }) => {
         },
       });
       setBabies(res.data);
+      setLoadingBabies(false)
       if (res.data.length > 0 && !selectedBabyId) {
         if (existingSelectedBabyId) setSelectedBabyId(existingSelectedBabyId);
         else setSelectedBabyId(res.data[0].id);
       }
     } catch (err) {
+      setLoadingBabies(false)
       console.error(
         'Failed to load babies:',
         err.response?.data || err.message
@@ -59,7 +70,10 @@ export const BabiesProvider = ({ children }) => {
         selectedBabyId,
         loadBabies,
         babyAlert,
-        setBabyAlert: setTemporaryBabyAlert
+        setBabyAlert: setTemporaryBabyAlert,
+        loadingBabies,
+        setLoadingBabies,
+        resetBabiesContext
       }}
     >
       {children}

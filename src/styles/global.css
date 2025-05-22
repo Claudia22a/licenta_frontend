@@ -56,7 +56,6 @@ footer {
 .btn-accent {
   transition: all 0.2s ease;
   box-shadow: none;
-  border-radius: 0.2rem !important;
 }
 .btn-primary:hover {
   box-shadow: 0 4px 8px rgba(66, 173, 223, 0.4); /* var(--color-primary) */
@@ -74,7 +73,6 @@ footer {
   border-color: var(--color-primary) !important;
   background-color: transparent !important;
   transition: all 0.2s ease;
-  border-radius: 0.2rem !important;
 }
 
 .btn-outline-primary:hover {
@@ -88,7 +86,6 @@ footer {
   border-color: var(--color-secondary) !important;
   background-color: transparent !important;
   transition: all 0.2s ease;
-  border-radius: 0.2rem !important;
 }
 
 .btn-outline-secondary:hover {
@@ -102,7 +99,6 @@ footer {
   border-color: var(--color-accent) !important;
   background-color: transparent !important;
   transition: all 0.2s ease;
-  border-radius: 0.2rem !important;
 }
 
 .btn-outline-accent:hover {

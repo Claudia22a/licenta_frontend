@@ -6,6 +6,7 @@ import './LogCalendar.scss';
 import { BabiesContext } from '../../context/Babies/BabiesContext';
 import api from '../../api/axios';
 import { entryTypes } from '../../helpers/constants';
+import { Link } from 'react-router-dom';
 
 const localizer = momentLocalizer(moment);
 
@@ -71,6 +72,9 @@ export default function LogCalendar() {
   return (
     <>
       <h4>Baby Activity Calendar</h4>
+      <Link to={`/add-log-entry`} className="btn btn-sm btn-accent mb-3">
+        Add Log Entry
+      </Link>
       <Calendar
         localizer={localizer}
         events={events}
@@ -78,7 +82,7 @@ export default function LogCalendar() {
         endAccessor="end"
         style={{ height: 500 }}
         popup
-        onSelectEvent={() => alert('hello')}
+        onSelectEvent={() => {}}
         eventPropGetter={eventPropGetter}
       />
     </>

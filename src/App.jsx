@@ -11,6 +11,7 @@ import { useContext } from 'react';
 import { AuthContext } from './context/Auth/AuthContext';
 import EditBaby from './pages/EditBaby';
 import AddLogEntry from './pages/AddLogEntry';
+import AddMeasurement from './pages/AddMeasurement/AddMeasurement';
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -64,6 +65,14 @@ function App() {
             element={
               <PrivateRoute>
                 <AddLogEntry />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/add-measurement"
+            element={
+              <PrivateRoute>
+                <AddMeasurement />
               </PrivateRoute>
             }
           />
