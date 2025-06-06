@@ -4,15 +4,16 @@ import EntryForm from '../components/LogEntryForms/LogEntryForm';
 import EntryTypeSelector from '../components/LogEntryForms/EntryTypeSelector';
 import api from '../api/axios';
 import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
 
 export default function AddLogEntry() {
   const baseFormData = {
     title: '',
-    logged_at: new Date(),
+    logged_at: moment(),
     notes: '',
     amount: 0,
-    start_time: new Date(),
-    end_time: new Date(),
+    start_time: null,
+    end_time: null,
     unit: '',
     location: '',
     mood: '',
@@ -33,23 +34,35 @@ export default function AddLogEntry() {
   const [formData, setFormData] = useState(baseFormData);
   const [error, setError] = useState('');
   const { selectedBabyId, setBabyAlert } = useContext(BabiesContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const updateField = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
   const updateDateField = (name, value) => {
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const dateTime = moment(value);
+    setFormData((prev) => ({ ...prev, [name]: dateTime }));
   };
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    const data = {
+      ...formData,
+      entry_type: entryType,
+      logged_at: formData.logged_at.toISOString(),
+      start_time: formData.start_time?.toISOString(),
+      end_time: formData.end_time?.toISOString(),
+    };
+    console.log(data);
 
     try {
       const token = localStorage.getItem('token');
       const res = await api.post(
         `/api/v1/babies/${selectedBabyId}/log_entries`,
-        { log_entry: { ...formData, entry_type: entryType } },
+        {
+          log_entry: data,
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -63,13 +76,12 @@ export default function AddLogEntry() {
         setError('');
         setFormData(baseFormData);
         setEntryType('');
-        setBabyAlert('Log was saved successfully')
-        navigate('/dashboard')
+        setBabyAlert('Log was saved successfully');
+        navigate('/dashboard');
       }
     } catch (err) {
       const errorMsg =
-        err.response?.data?.errors?.join(', ') ||
-        'Something went wrong. Please try again.';
+        err.response?.data?.errors?.join(', ') || 'Something went wrong. Please try again.';
       setError(errorMsg);
     }
   };

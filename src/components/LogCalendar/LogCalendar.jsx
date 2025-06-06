@@ -21,16 +21,15 @@ export default function LogCalendar() {
       const token = localStorage.getItem('token');
 
       try {
-        const res = await api.get(
-          `/api/v1/babies/${selectedBabyId}/log_entries`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const res = await api.get(`/api/v1/babies/${selectedBabyId}/log_entries`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         const formatted = res.data.map((entry) => {
+          console.log(entry);
+
           let start = moment(entry.logged_at).toDate();
           let end = moment(entry.logged_at).toDate();
           if (entry.start_time && entry.end_time) {
@@ -38,11 +37,17 @@ export default function LogCalendar() {
             end = moment(entry.end_time).toDate();
           }
 
+          const title = `${type(entry).emoji} ${type(entry).label}${
+            entry.entry_type === 'custom'
+              ? ': ' + entry.title
+              : entry.title
+              ? ': ' + entry.notes.slice(0, 20)
+              : ''
+          }`;
+
           return {
             id: entry.id,
-            title: `${type(entry).emoji} ${type(entry).label}${
-              entry.title ? ': ' + entry.notes.slice(0, 20) : ''
-            }`,
+            title,
             start,
             end,
           };
